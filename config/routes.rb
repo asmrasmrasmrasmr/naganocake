@@ -1,6 +1,13 @@
 Rails.application.routes.draw do
 
-  devise_for :admins
+  devise_for :admins, :controllers => {
+    :registrations => 'admins/registrations',
+    :sessions => 'admins/sessions'
+  }
+  devise_scope :admin do
+    get "sign_in", :to => "admins/sessions#new"
+    get "sign_out", :to => "admins/sessions#destroy"
+  end
 
   devise_for :customers
 
