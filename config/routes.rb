@@ -1,25 +1,15 @@
 Rails.application.routes.draw do
 
-  devise_for :admins, :controllers => {
-    :registrations => 'admins/registrations',
-    :sessions => 'admins/sessions'
+  devise_for :admins,skip: [:registrations, :passwords] ,controllers: {
+    sessions: "admin/sessions"
   }
-  devise_scope :admin do
-    get "sign_in", :to => "admins/sessions#new"
-    get "sign_out", :to => "admins/sessions#destroy"
-  end
 
   devise_for :users
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 
-  devise_for :customers, :controllers => {
-    :registrations => 'customers/registrations',
-    :sessions => 'customers/sessions'
+  devise_for :customers,skip: [:passwords], controllers: {
+    registrations: "customer/registrations",
+    sessions: 'customer/sessions'
   }
-
-  devise_scope :customer do
-    get "sign_in", :to => "customers/sessions#new"
-    get "sign_out", :to => "customers/sessions#destroy"
-  end
 
 end
