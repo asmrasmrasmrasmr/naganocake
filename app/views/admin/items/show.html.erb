@@ -1,0 +1,9 @@
+商品詳細
+<%= image_tag @item.get_image(150, 150) %>
+商品名<%= @item.name %>
+商品説明<%= @item.explanation %>
+ジャンル
+税込価格
+(税抜価格)<%= @item.price %>
+販売ステータス
+<%= link_to "編集する" %>
