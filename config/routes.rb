@@ -17,4 +17,9 @@ Rails.application.routes.draw do
     sessions: 'public/sessions'
   }
 
+    #3/19崎田　配送先のリソースを作成
+    scope module: :public do
+      resources :addresses, only: [:index, :edit, :create, :update, :destroy]
+    end
+
 end
