@@ -1,5 +1,37 @@
 Rails.application.routes.draw do
 
+  # namespace :public do
+  #   get 'customers/show'
+  #   get 'customers/edit'
+  # end
+
+  scope module: :public do
+    resource :customers, only:[:show, :edit, :update] do
+     collection do
+       get "quit"
+       patch "out"
+       end
+     end
+   end
+
+  # namespace :public do
+
+    # resource :customers, only:[:show, :edit, :update] do
+    # collection do
+    #   get "quit"
+    #   patch "out"
+    #   end
+    # end
+
+
+    #get '/customers' => 'customers#show'
+    #get 'customers/:id', to: 'customer#show', as: 'customers'
+
+    #get 'customers/my_page' => 'customer#show'
+    # get 'customer/edit'
+    # resources :customer, only: [:edit,:show]
+
+
   root to: "public/homes#top"
   get "about" => "public/homes#about"
 
@@ -18,3 +50,4 @@ Rails.application.routes.draw do
   }
 
 end
+
