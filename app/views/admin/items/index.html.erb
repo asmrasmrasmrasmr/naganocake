@@ -1,0 +1,13 @@
+<% @items.each do |item| %>
+<%= item.id %>
+<%= item.name %>
+<%= item.price %>
+<!--もしis_activbeが…-->
+<% if item.is_active == true %>
+<!--trueである場合-->
+販売中
+<% else %>
+<!--falseである場合-->
+販売停止中
+<% end %>
+<% end %>

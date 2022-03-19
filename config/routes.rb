@@ -9,10 +9,12 @@ Rails.application.routes.draw do
     resource :customers, only:[:show, :edit, :update] do
      collection do
        get "quit"
-       patch "out"
+       patch "out"  
        end
+    resources :addresses, only: [:index, :edit, :create, :update, :destroy]
      end
    end
+  
 
   # namespace :public do
 
@@ -40,6 +42,8 @@ Rails.application.routes.draw do
   }
   namespace :admin do
     resources :genres, only: [:index,:create,:edit,:update]
+    resources :items, only: [:index, :show, :edit, :new, :create, :update]
+    resources :customers, only: [:index, :show, :edit, :update]
   end
 
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
@@ -49,5 +53,5 @@ Rails.application.routes.draw do
     sessions: 'public/sessions'
   }
 
-end
 
+end
