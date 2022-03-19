@@ -6,15 +6,15 @@ Rails.application.routes.draw do
   # end
 
   scope module: :public do
+    resources :addresses, only: [:index, :edit, :create, :update, :destroy]
     resource :customers, only:[:show, :edit, :update] do
      collection do
        get "quit"
-       patch "out"  
+       patch "out"
        end
-    resources :addresses, only: [:index, :edit, :create, :update, :destroy]
      end
    end
-  
+
 
   # namespace :public do
 
