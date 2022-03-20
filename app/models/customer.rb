@@ -7,4 +7,8 @@ class Customer < ApplicationRecord
   #3/19崎田　配送先登録・一覧のため追記
   has_many :addresses
 
+  def active_for_authentication?
+    super && (is_deleted == false)
+  end
+
 end

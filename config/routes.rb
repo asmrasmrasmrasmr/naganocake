@@ -54,5 +54,9 @@ Rails.application.routes.draw do
     sessions: 'public/sessions'
   }
 
-
+  # 退会確認画面
+  get "/customers/unsubscribe" => "public/customers#unsubscribe", as: "unsubscribe"
+  # 論理削除用のルーティング
+  patch "/customers/withdrawal" => "public/customers#withdrawal", as: "withdrawal"
 end
+
