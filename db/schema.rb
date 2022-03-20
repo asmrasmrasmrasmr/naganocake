@@ -47,6 +47,7 @@ ActiveRecord::Schema.define(version: 2022_03_19_095432) do
     t.string "addresses"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.string "address"
   end
 
   create_table "admins", force: :cascade do |t|
@@ -76,7 +77,7 @@ ActiveRecord::Schema.define(version: 2022_03_19_095432) do
     t.string "address"
     t.string "phone_number"
     t.string "postal_code"
-    t.boolean "is_deleted"
+    t.boolean "is_deleted", default: false
     t.index ["email"], name: "index_customers_on_email", unique: true
     t.index ["reset_password_token"], name: "index_customers_on_reset_password_token", unique: true
   end
