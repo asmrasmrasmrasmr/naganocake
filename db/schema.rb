@@ -10,11 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-<<<<<<< HEAD
 ActiveRecord::Schema.define(version: 2022_03_20_072046) do
-=======
-ActiveRecord::Schema.define(version: 2022_03_19_073539) do
->>>>>>> 2998dcb (顧客側の配送先登録、一覧、編集を追加しました)
 
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
@@ -99,6 +95,19 @@ ActiveRecord::Schema.define(version: 2022_03_19_073539) do
     t.datetime "updated_at", precision: 6, null: false
     t.boolean "is_active", default: true, null: false
     t.integer "genre_id"
+  end
+
+  create_table "orders", force: :cascade do |t|
+    t.integer "customer_id"
+    t.integer "shipping_fee"
+    t.integer "total_payment"
+    t.integer "payment_method"
+    t.string "name"
+    t.string "address"
+    t.string "postal_code"
+    t.integer "status"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
   end
 
   create_table "order_items", force: :cascade do |t|
