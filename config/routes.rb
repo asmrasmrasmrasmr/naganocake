@@ -8,6 +8,12 @@ Rails.application.routes.draw do
   scope module: :public do
     resources :items, only: [:index, :show]
     resources :addresses, only: [:index, :edit, :create, :update, :destroy]
+    resources :order_items, only: [:index, :show, :new, :create] do
+      collection do
+        post "confilm"
+        get "complete"
+      end
+    end
     resource :customers, only:[:show, :edit, :update] do
      collection do
        get "quit"
@@ -42,6 +48,7 @@ Rails.application.routes.draw do
     sessions: "admin/sessions"
   }
   namespace :admin do
+    get "/" => "homes#top"
     resources :genres, only: [:index,:create,:edit,:update]
     resources :items, only: [:index, :show, :edit, :new, :create, :update]
     resources :customers, only: [:index, :show, :edit, :update]
