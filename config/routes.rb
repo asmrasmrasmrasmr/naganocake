@@ -8,6 +8,12 @@ Rails.application.routes.draw do
   scope module: :public do
     resources :items, only: [:index, :show]
     resources :addresses, only: [:index, :edit, :create, :update, :destroy]
+    resources :order_items, only: [:index, :show, :new, :create] do
+      collection do
+        post "confilm"
+        get "complete"
+      end
+    end
     resource :customers, only:[:show, :edit, :update] do
      collection do
        get "quit"
