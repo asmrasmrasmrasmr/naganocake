@@ -1,0 +1,8 @@
+ショッピングカート
+<% @cart_items.each do |cart_item| %>
+<%= cart_item.item.name %> #商品名
+<%= (cart_item.item.taxin_price).to_i %>
+<%= cart_item.amount %>
+<%= (cart_item.amount*cart_item.item.taxin_price).floor %>
+<% end %>
+<%= @total.round.to_s(:delimited) %>

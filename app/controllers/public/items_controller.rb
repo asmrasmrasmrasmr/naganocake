@@ -9,10 +9,13 @@ class Public::ItemsController < ApplicationController
     @item = Item.find(params[:id])
 
   #3/20もし商品の販売ステータスが販売停止（unless）であればリダイレクトさせない
-    redirect_to items_path and return unless @item.is_active
+    # redirect_to items_path and return unless @item.is_active
+    @cart_item = CartItem
+  end
 
-    ## @cart_item = Cart_Item.new
-
+  private
+  def item_params
+    params.repuire(:item).permit(:genre_id, :name, :explanation, :image, :price)
   end
 
 end
