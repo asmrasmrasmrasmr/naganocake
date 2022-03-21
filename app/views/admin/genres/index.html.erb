@@ -8,5 +8,6 @@
 
 <% @genres.each do |genre| %>
 <%= genre.name %>
+<%= genre.created_at.strftime('%Y/%m/%d/ %H:%M:%S') %>あとで消す！
 <%= link_to "編集する",edit_admin_genre_path(genre), class: 'btn btn-success' %>
 <% end %>
