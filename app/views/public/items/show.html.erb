@@ -17,18 +17,17 @@
       <div><%= @item.explanation %></div>
 
       <!--税込価格→　　　-->
-
+      <div>¥<%= (@item.price * 1.1).floor %>(税込)</div>
       <br>
 
       <!--個数選択(f.select :amout)、「カートに入れる」とカート一覧ページに移動する-->
       <div>
         <%= form_with model: @cart_item, url: "/cart_items", method: :post , local:true do |f| %>
-        <%= f.select :amount, *[1..100], include_blank: "個数選択" %>
-        <%= f.hidden_field :item_id,value: @item.id %>
-        <%= f.submit "カートに入れる" , class: "btn btn-sm btn-success" %>
+        <%= f.hidden_field :item_id, :value => @item.id %>
+        <%= f.select :amount, *[1..10], include_blank: "個数選択" %>
+        <%= f.submit "カートに入れる", class: "btn btn-sm btn-success" %>
         <% end %>
       </div>
-
     </div>
   </div>
 </div>
