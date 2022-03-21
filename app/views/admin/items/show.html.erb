@@ -4,7 +4,7 @@
 商品説明<%= @item.explanation %>
 ジャンル<%= @item.genre.name %>
 税込価格(税抜価格)
-<%= (@item.price * 1.1).floor %> (<%= @item.price %>)円
+<%= (@item.taxin_price).floor %> (<%= @item.price %>)円
 販売ステータス
 <% if @item.is_active == true %>
 販売中
