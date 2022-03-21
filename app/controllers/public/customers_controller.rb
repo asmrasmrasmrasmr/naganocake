@@ -20,6 +20,12 @@ class Public::CustomersController < ApplicationController
   end
 
   def update
+    @customer = current_customer
+    if @customer.update(customer_params)
+      redirect_to request.referer, notice: "successfully"
+    else
+      render edit
+    end
   end
 
   def quit
@@ -29,7 +35,8 @@ class Public::CustomersController < ApplicationController
   end
 
   def withdrawal
-    customers.update(is_deleted: true)
+    @customer = current_customer
+    @customer.update(is_deleted: true)
     reset_session
     flash[:notice] = "退会処理を実行いたしました"
     redirect_to root_path
@@ -38,6 +45,7 @@ class Public::CustomersController < ApplicationController
   def unsubscribe
   end
 
-
-
+  def customer_params
+    params.require(:customer).permit(:last_name,:first_name,:first_name_kana,:last_name_kana,:address,:phone_number,:postal_code,:email)
+  end
 end
