@@ -13,4 +13,8 @@ class Customer < ApplicationRecord
     super && (is_deleted == false)
   end
 
+  def full_address
+    '〒' + postal_code + ' ' + address + ' ' + first_name + ' ' + last_name
+  end
+
 end

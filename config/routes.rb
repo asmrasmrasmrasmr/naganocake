@@ -13,9 +13,10 @@ Rails.application.routes.draw do
         delete "destroy_all"
       end
     end
-    resources :order_items, only: [:index, :show, :new, :create] do
+    resources :orders, only: [:index, :show, :new, :create] do
       collection do
-        post "confilm"
+        #POST＝情報を流す
+        post "confirm"
         get "complete"
       end
     end
