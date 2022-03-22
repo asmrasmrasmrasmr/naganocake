@@ -1,5 +1,6 @@
 class Public::CartItemsController < ApplicationController
   def index
+    @cart_item = current_customer.cart_items
     @cart_items = CartItem.all
     @total = @cart_items.inject(0) { |sum, item| sum + item.sum_of_price }
   end
@@ -18,12 +19,20 @@ class Public::CartItemsController < ApplicationController
   end
 
   def update
+    @cart_item = CartItem.find(params[:id])
+    @cart_item.update(cart_item_params)
+    redirect_to request.referer
   end
 
   def destroy
+    cart_item = CartItem.find(params[:id])
+    cart_item.destroy
+    redirect_to request.referer
   end
 
   def destroy_all
+    current_customer.cart_items.destroy_all
+    redirect_to request.referer
   end
 
   private
