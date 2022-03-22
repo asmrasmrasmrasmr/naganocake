@@ -1,8 +1,14 @@
 ショッピングカート
+<%= link_to "カートを空にする", destroy_all_cart_items_path, method: :delete,class: "btn btn-danger" %>
 <% @cart_items.each do |cart_item| %>
 <%= cart_item.item.name %> #商品名
 <%= (cart_item.item.taxin_price).to_i %>
-<%= cart_item.amount %>
+<%= form_with model: cart_item,url: cart_item_path(cart_item.id),method: :patch,local:true do |f| %>
+<%= f.select :amount, *[1..10] %>
+<%= f.submit "変更",class: "btn btn-sm btn-success" %>
+<% end %>
 <%= (cart_item.amount*cart_item.item.taxin_price).floor %>
+<%= link_to "削除する",cart_item_path(cart_item.id), method: :delete,class: "btn btn-sm btn-danger" %>
 <% end %>
 <%= @total.round.to_s(:delimited) %>
+<%= link_to "買い物を続ける",items_path, class: "btn btn-primary" %>
