@@ -18,4 +18,6 @@ class Item < ApplicationRecord
    price*1.1
  end
 
+
+
 end

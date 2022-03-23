@@ -24,7 +24,7 @@ class Public::CustomersController < ApplicationController
     if @customer.update(customer_params)
       redirect_to request.referer, notice: "successfully"
     else
-      render edit
+      render "edit"
     end
   end
 

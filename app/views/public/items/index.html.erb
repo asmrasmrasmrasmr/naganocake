@@ -17,7 +17,7 @@
       <div><%= item.name %></div>
 
       <!--税込価格→　　　　-->
-    <div><%= (item.taxin_price).floor %></div>
+    <div><%= (item.taxin_price).round %></div>
     </div>
     <% end %>
   </div>
