@@ -1,1 +1,42 @@
-注文情報確認
+注文情報確認<br>
+<table>
+<!-- ユーザーに確認してもらうための表示です -->
+<% @cart_items.each do |cart| %>
+  <% if cart.item.image.attached? %>
+    <%= image_tag cart.item.image, size: "150x100" %>
+  <% else %>
+    <%= image_tag 'no_image.jpg', size: "150x100" %>
+  <% end %>
+  <%= cart.item.name %> <!-- 商品名 -->
+  <%= (cart.item.taxin_price).round.to_s(:delimited) %>　<!-- 金額 -->
+  <%= cart.amount %> <!-- 個数 -->
+  <%= (cart.item.taxin_price*cart.amount).round.to_s(:delimited) %> <!-- 小計 -->
+<% end %>
+<p>ご請求金額</p>
+<%= @total.round.to_s(:delimited)  %>
+<%= (@total.round + @shipping_fee).to_s(:delimited)   %> <!-- お買い物の合計金額 -->
+
+
+送料
+<%= @shipping_fee %>
+
+支払い方法
+<%= @order.payment_method_i18n %>
+<br>
+
+お届け先
+<%= @order.full_addresses %>
+<br>
+
+
+<!-- ユーザーには注文確定ボタンだけ表示します -->
+<%= form_with model: @order, url: orders_path , local: true do |f| %>
+  <%= f.hidden_field :name %>
+  <%= f.hidden_field :address %>
+  <%= f.hidden_field :total_price, value: @total %>
+
+  <%= f.submit "注文を確定する" %>
+<% end %>
+
+
+

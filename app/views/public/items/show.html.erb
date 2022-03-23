@@ -17,7 +17,7 @@
       <div><%= @item.explanation %></div>
 
       <!--税込価格→　　　-->
-      <div>¥<%= (@item.price * 1.1).floor %>(税込)</div>
+      <div>¥<%= (@item.taxin_price).round %>(税込)</div>
       <br>
 
       <!--個数選択(f.select :amout)、「カートに入れる」とカート一覧ページに移動する-->
