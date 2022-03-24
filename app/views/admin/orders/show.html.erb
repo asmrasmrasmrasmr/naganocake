@@ -44,7 +44,7 @@
       <td><%= order_item.item.name %></td>
       <td><%= order_item.item.taxin_price.round %></td>
       <td><%= order_item.amount %></td>
-      <td><%#= order.status %></td>
+      <td><%= order_item.item.taxin_price.round * order_item.amount %></td>
       <td><%= form_with model: order_item, url: admin_order_item_path(order_item.id), method: :patch do |f| %>
       <%= f.select :status,OrderItem.statuses_i18n.keys.map{|k| [I18n.t("enums.order_item.status.#{k}"), k]} %>
       <%= f.submit "更新", class: "btn btn-sm btn-success" %>
@@ -54,3 +54,6 @@
   </tbody>
 </table>
 </div>
+<%= @order.shipping_fee %>
+<%= @order.total_payment %>
+<%= @order.total_payment - @order.shipping_fee %>
