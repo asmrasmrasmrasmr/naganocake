@@ -6,6 +6,7 @@ class Public::OrdersController < ApplicationController
 
   def create
     order = Order.new(order_params)
+    order.status = 0
     order.save
     cart_items = current_customer.cart_items
     cart_items.includes(:item).each do |cart_item|
@@ -27,6 +28,7 @@ class Public::OrdersController < ApplicationController
     @order = Order.new(order_params)
     @order.shipping_fee = FEE
     @order.customer_id = current_customer.id
+    @order.total_payment = @total.round + @order.shipping_fee
     if params[:order][:full_address] == "1"
       @order.postal_code = current_customer.postal_code
       @order.address = current_customer.address
@@ -48,10 +50,15 @@ class Public::OrdersController < ApplicationController
 
 
   def index
+    @orders = Order.where(customer_id:current_customer)
   end
 
   def show
+    @order = Order.find(params[:id])
+
+
   end
+
   private
 
   def address_params
@@ -59,7 +66,7 @@ class Public::OrdersController < ApplicationController
   end
 
   def order_params
-    params.require(:order).permit(:payment_method, :postal_code, :address, :name,:customer_id, :shipping_fee, :status)
+    params.require(:order).permit(:payment_method, :postal_code, :address, :name,:customer_id, :shipping_fee, :status, :total_payment)
   end
 
 end

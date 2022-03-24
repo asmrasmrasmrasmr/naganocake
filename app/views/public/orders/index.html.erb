@@ -1,10 +1,31 @@
-注文履歴一覧
-
-<tr>
-  
-
-
-
-
-
-</tr>
+<div class="container">
+  <h4 style="background-color:#EEEEEE;color:dark;display:inline">注文履歴一覧</h4>
+  <table class="table">
+  <thead class="thead-light">
+    <tr>
+      <th>注文日</th>
+      <th>配送先</th>
+      <th>注文商品</th>
+      <th>支払金額</th>
+      <th>ステータス</th>
+      <th>注文詳細</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @orders.each do |order| %>
+    <tr>
+      <td><%= order.created_at.strftime('%Y/%m/%d') %></td>
+      <td><%= order.full_addresses %></td>
+      <td><%#= order.order_items.each do |order_item| item.name %>
+          <% order.order_items.each do |order_item| %>
+          <%= order_item.item.name %>
+          <% end %>
+      </td>
+      <td><%= order.total_payment %></td>
+      <td><%= order.status_i18n %></td>
+      <td><%= link_to "表示する", order_path(order.id) , class: "btn btn-primary"  %></td>
+    </tr>
+    <% end %>
+  </tbody>
+</table>
+</div>
