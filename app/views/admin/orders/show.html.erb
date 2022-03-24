@@ -3,14 +3,14 @@
    <table class="table">
     <tr>
       <td>購入者</td>
-      <td><%= @order.customer.name %></td>
+      <td><%= @order.name %></td>
     </tr>
     <tr><td>注文日</td>
-        <td><%= @order.created_at.strftime('%Y/%m/%d/ %H:%M:%S') %></td>
+        <td><%= @order.created_at.strftime('%Y/%m/%d') %></td>
     </tr>
     <tr>
       <td>配送先</td>
-      <td><%= @order.postal_code %> <%= @order.address %> <%= @order.name %></td>
+      <td><%= @order.full_addresses %></td>
     </tr>
     <tr>
       <td>支払い方法</td>
@@ -20,9 +20,37 @@
       <td>注文ステータス</td>
       <td>
         <%= form_with model: @order, url: admin_order_path(@order.id), method: :patch do |f| %>
-        <%#= f.select :プロパティ名, options_from_collection_for_select(モデル, :フォームで送る値(メソッド), :セレクトボックスに表示する値(メソッド)) %>
-        <%#= f.select :status, options_from_collection_for_select(Order.status :id, :name) %！考え中です！>
+        <%= f.select :status,Order.statuses_i18n.keys.map{|k| [I18n.t("enums.order.status.#{k}"), k]} %>
+        <%= f.submit "更新", class: "btn btn-sm btn-success" %>
+        <% end %>
       </td>
     </tr>
+  </table>
+
+
+  <table class="table">
+  <thead class="thead-light">
+    <tr>
+      <th>商品名</th>
+      <th>単価（税込）</th>
+      <th>数量</th>
+      <th>小計</th>
+      <th>制作ステータス</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @order_items.each do |order_item| %>
+    <tr>
+      <td><%= order_item.item.name %></td>
+      <td><%= order_item.item.taxin_price.round %></td>
+      <td><%= order_item.amount %></td>
+      <td><%#= order.status %></td>
+      <td><%= form_with model: order_item, url: admin_order_item_path(order_item.id), method: :patch do |f| %>
+      <%= f.select :status,OrderItem.statuses_i18n.keys.map{|k| [I18n.t("enums.order_item.status.#{k}"), k]} %>
+      <%= f.submit "更新", class: "btn btn-sm btn-success" %>
+    <% end %></td>
+    </tr>
+    <% end %>
+  </tbody>
 </table>
 </div>

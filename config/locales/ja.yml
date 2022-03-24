@@ -4,3 +4,19 @@
         payment_method:
           credit_card: "クレジットカード"
           transfer: "銀行振込"
+        status:
+          waiting_for_deposit: "入金待ち"
+          payment_confirmation: "入金確認"
+          in_production: "製作中"
+          prepairing_to_ship: "発送準備中"
+          shipped: "発送済み"
+      order_item:
+        status:
+          start_not_possible: "着手不可"
+          production_pending: "制作待ち"
+          in_production: "製作中"
+          production_complete: "制作完了"
+    activerecord:
+      errors:
+        messages:
+          record_invalid: 'バリデーションに失敗しました: %{errors}'
