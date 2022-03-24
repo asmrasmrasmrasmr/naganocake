@@ -46,6 +46,12 @@ class Public::OrdersController < ApplicationController
     end
   end
 
+
+  def index
+  end
+
+  def show
+  end
   private
 
   def address_params
