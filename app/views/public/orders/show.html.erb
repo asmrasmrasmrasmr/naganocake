@@ -1,1 +1,20 @@
 注文履歴詳細
+
+注文情報
+<%= @order.created_at.strftime('%Y/%m/%d') %><br>
+<%= @order.full_addresses %><br>
+<%= @order.payment_method_i18n %><br>
+<%= @order.status_i18n %><br>
+
+請求情報
+<%= @order.total_payment - @order.shipping_fee%>
+<%= @order.shipping_fee %>
+<%= @order.total_payment %>
+
+注文内容
+<% @order.order_items.each do |order_item| %>
+<%= order_item.item.name %>
+<%= order_item.item.taxin_price.round %>
+<%= order_item.amount %>
+<%= order_item.item.taxin_price.round * order_item.amount %>
+<% end %>
