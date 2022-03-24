@@ -11,7 +11,6 @@ class Public::OrdersController < ApplicationController
   end
 
   def confirm
-
     @cart_items = CartItem.all
     @total = @cart_items.inject(0) { |sum, item| sum + item.sum_of_price }
     @shipping_fee = FEE
@@ -35,6 +34,12 @@ class Public::OrdersController < ApplicationController
     end
   end
 
+
+  def index
+  end
+
+  def show
+  end
   private
 
   def address_params
