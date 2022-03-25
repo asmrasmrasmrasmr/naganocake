@@ -1,10 +1,10 @@
 class Public::AddressesController < ApplicationController
-
+  before_action :authenticate_customer!
 #3/19崎田　配送先登録・一覧のため追記
 
   def index
     @address = Address.new
-    @addresses = Address.all
+    @addresses = Address.where(customer_id:current_customer)
     @customer = current_customer
   end
 

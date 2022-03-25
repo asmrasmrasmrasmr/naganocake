@@ -1,5 +1,9 @@
+<%= render "admin/homes/header" %>
+<div class="container">
+<div class="row mt-5">
 <h4 style="background-color:#EEEEEE;color:dark;display:inline"><%= @customer.last_name %><%= @customer.first_name %>さんの会員詳細<thead></h4>
-
+</div>
+<div class="row mt-3">
 <table class="table table-borderless">
     <tr>
       <th>会員ID</th>
@@ -33,16 +37,19 @@
     </tr>
     <tr>
       <th>会員ステータス</th>
-      <td><% if @customer.is_deleted == true %>
-        <!--trueである場合-->
-        有効
-        <% else %>
+      <td><% if @customer.is_deleted == false %>
         <!--falseである場合-->
-        退会
-        <% end %></td>
+        <div class="col-2 text-success">有効</div>
+        <% else %>
+        <!--trueである場合-->
+        <div class="col-2 text-secondary">退会</div>
+        <% end %>
+        </td>
     </tr>
   </tbody>
 </table>
-
+</div>
 <br>
 <%= link_to "編集する",edit_admin_customer_path(@customer), class: 'btn btn-success' %>
+<div class='btn btn-primary' >注文履歴一覧を見る</div>
+</div>
