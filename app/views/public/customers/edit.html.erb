@@ -8,49 +8,47 @@
       <% end %>
     </ul>
 <% end %>
-<br>
-<h4 style="background-color:#EEEEEE;color:dark;display:inline">会員情報編集</h4>
+
+<h4>会員情報編集</h4>
+<%= form_with model: @customer, url: customers_path, method: :patch, local: false do |f| %>
   <table>
-    <%= form_with model: @customer, url: customers_path(current_customer), method: :patch do |f| %>
-      <tr>
-        <td class="form-group">
-          <lavel for="customer_name">氏名</lavel>
-          <div class><%= f.text_field :last_name, autofocus: true, placeholder:"姓" %> <%= f.text_field :first_name, placeholder:"名" %></div>
-        </td>
-      </tr>
-      <tr>
-        <td class="form-group">
-          <lavel for="customer_name_kana">フリガナ</lavel>
-          <div class><%= f.text_field :last_name_kana, placeholder:"セイ" %> <%= f.text_field :first_name_kana, placeholder:"メイ" %></div>
-        </td>
-      </tr>
-      <tr>
-        <td class="form-group">
-          <lavel for="postal_code">郵便番号</lavel>
-          <div class><%= f.text_field :postal_code, placeholder:"00000000" %></div>
-        </td>
-      </tr>
-      <tr>
-        <td class="form-group">
-          <lavel for="address">住所</lavel>
-          <div class><%= f.text_field :address, placeholder:"00000000" %></div>
-        </td>
-      </tr>
-      <tr>
-        <td class="form-group">
-          <lavel for="phone_number">電話番号</lavel>
-          <div class><%= f.text_field :phone_number, placeholder:"00000000000" %></div>
-        </td>
-      </tr>
-      <tr>
-        <td class="form-group">
-          <lavel for="phone_number">メールアドレス</lavel>
-          <div class><%= f.text_field :email, placeholder:"test@test.com" %></div>
-        </td>
-      </tr>
-      <tr>
-        <td><%= f.submit "編集内容を保存" , class: "btn btn-success" %></td>
-        <td><%= link_to "退会する", unsubscribe_path, class: "btn btn-danger" %></td>
-      </tr>
-        <% end %>
+    <tr>
+      <td class="form-group">
+        <lavel for="customer_name">氏名</lavel>
+        <div class><%= f.text_field :last_name, placeholder:"姓" %> <%= f.text_field :first_name, placeholder:"名" %></div>
+      </td>
+    </tr>
+    <tr>
+      <td class="form-group">
+        <lavel for="customer_name_kana">フリガナ</lavel>
+        <div class><%= f.text_field :last_name_kana, placeholder:"セイ" %> <%= f.text_field :first_name_kana, placeholder:"メイ" %></div>
+      </td>
+    </tr>
+      <td class="form-group">
+        <lavel for="postal_code">郵便番号</lavel>
+        <div class><%= f.text_field :postal_code, placeholder:"00000000" %></div>
+      </td>
+    <tr>
+    </tr>
+      <td class="form-group">
+        <lavel for="address">住所</lavel>
+        <div class><%= f.text_field :address, placeholder:"東京都渋谷区神南1丁目19-11 パークウェースクエア24階" %></div>
+      </td>
+    <tr>
+      <td class="form-group">
+        <lavel for="phone_number">電話番号</lavel>
+        <div class><%= f.text_field :phone_number, placeholder:"00000000000" %></div>
+      </td>
+    </tr>
+    <tr>
+      <td class="form-group">
+        <lavel for="phone_number">メールアドレス</lavel>
+        <div class><%= f.text_field :email, placeholder:"test@test.com" %></div>
+      </td>
+    </tr>
+    <tr>
+      <td><%= f.submit "編集内容を保存" , class: "btn btn-success" %></td>
+      <td><%= link_to "退会する", unsubscribe_path, class: "btn btn-danger"   %></td>
+    </tr>
   </table>
+<% end %>
