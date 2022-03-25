@@ -9,6 +9,8 @@ class Customer < ApplicationRecord
   has_many :cart_items, dependent: :destroy
   has_many :orders, dependent: :destroy
 
+  validates :last_name, :first_name , :first_name_kana, :last_name_kana, :address, :phone_number, :postal_code,  presence: true
+
   def active_for_authentication?
     super && (is_deleted == false)
   end

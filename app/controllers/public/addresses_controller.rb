@@ -1,5 +1,5 @@
 class Public::AddressesController < ApplicationController
-
+  before_action :authenticate_customer!
 #3/19崎田　配送先登録・一覧のため追記
 
   def index

@@ -1,9 +1,13 @@
 <div class="container">
+  <div class="row mt-5">
   <h4 style="background-color:#EEEEEE;color:dark;display:inline">注文履歴詳細</h4>
+  </div>
+  <div class="row mt-3">
+    <div class="col col-lg-6">
    <table class="table">
     <tr>
       <td>購入者</td>
-      <td><%= @order.name %></td>
+      <td><%= @order.customer.last_name + @order.customer.first_name %></td>
     </tr>
     <tr><td>注文日</td>
         <td><%= @order.created_at.strftime('%Y/%m/%d') %></td>
@@ -26,8 +30,12 @@
       </td>
     </tr>
   </table>
-
-
+  </div>
+  </div>
+  </div>
+<div class="container">
+  <div class="row mt-3">
+    <div class="col col-lg-7">
   <table class="table">
   <thead class="thead-light">
     <tr>
@@ -54,6 +62,27 @@
   </tbody>
 </table>
 </div>
-<%= @order.shipping_fee %>
-<%= @order.total_payment %>
-<%= @order.total_payment - @order.shipping_fee %>
+
+
+<div class="col col-lg-4">
+  <table class="table table-borderless">
+  <thead>
+    <tr>
+      <th><h5 class="font-weight-bold">商品合計</p></th>
+      <td><%= @order.total_payment - @order.shipping_fee %>円</td>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th><h5 class="font-weight-bold">送料</p></th>
+      <td><%= @order.shipping_fee %>円</td>
+
+    </tr>
+    <tr>
+      <th><h5 class="font-weight-bold">請求金額合計</p></th>
+      <td><h5 class="font-weight-bold"><%= @order.total_payment %>円</p></td>
+    </tr>
+  </tbody>
+</table>
+</div>
+</div>
