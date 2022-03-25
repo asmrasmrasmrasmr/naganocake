@@ -1,10 +1,10 @@
 class Order < ApplicationRecord
   belongs_to :customer
   has_many :order_items, dependent: :destroy
+  validates :payment_method, :name, :address, :postal_code, presence: true
   enum payment_method: { credit_card: 0, transfer: 1 }
   enum status: { waiting_for_deposit: 0, payment_confirmation: 1, in_production: 2, prepairing_to_ship: 3, shipped: 4 }
   has_one_attached :image
-
   def full_addresses
     '〒' + postal_code + ' ' + address + ' ' + name
   end

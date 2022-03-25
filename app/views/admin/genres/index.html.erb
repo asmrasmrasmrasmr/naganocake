@@ -11,19 +11,23 @@
     </div>
   </div>
   <div class="row">
+    <div class="col col-lg-6">
     <table class="table">
   <thead class="thead-light">
     <tr>
       <th>ジャンル</th>
     </th>
   </thead>
+   <% @genres.each do |genre| %>
     <tr>
       <td>
-        <% @genres.each do |genre| %>
-        <%= genre.name %>
-        <%= link_to "編集する",edit_admin_genre_path(genre), class: 'btn btn-success' %>
-        <% end %>
+        <div class="row">
+        <div class="col-md-8"> <%= genre.name %></div>
+        <div class="col-6 col-md-4"><%= link_to "編集する",edit_admin_genre_path(genre), class: 'btn btn-success' %></div>
+        </div>
       </td>
     </tr>
+    <% end %>
   </table>
+</div>
 </div>
