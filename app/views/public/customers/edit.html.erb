@@ -1,3 +1,5 @@
+<%= render "public/homes/header" %>
+
 <% if @customer.errors.any?%>
   <%= @customer.error.count %>error
     <ul>
@@ -6,8 +8,8 @@
       <% end %>
     </ul>
 <% end %>
-
-<h4>会員情報編集</h4>
+<br>
+<h4 style="background-color:#EEEEEE;color:dark;display:inline">会員情報編集</h4>
   <table>
     <%= form_with model: @customer, url: customers_path(current_customer), method: :patch do |f| %>
       <tr>
@@ -22,10 +24,18 @@
           <div class><%= f.text_field :last_name_kana, placeholder:"セイ" %> <%= f.text_field :first_name_kana, placeholder:"メイ" %></div>
         </td>
       </tr>
+      <tr>
         <td class="form-group">
           <lavel for="postal_code">郵便番号</lavel>
           <div class><%= f.text_field :postal_code, placeholder:"00000000" %></div>
         </td>
+      </tr>
+      <tr>
+        <td class="form-group">
+          <lavel for="address">住所</lavel>
+          <div class><%= f.text_field :address, placeholder:"00000000" %></div>
+        </td>
+      </tr>
       <tr>
         <td class="form-group">
           <lavel for="phone_number">電話番号</lavel>
@@ -40,7 +50,7 @@
       </tr>
       <tr>
         <td><%= f.submit "編集内容を保存" , class: "btn btn-success" %></td>
-        <td><%= link_to "退会する", unsubscribe_path, class: "btn btn-danger"   %></td>
+        <td><%= link_to "退会する", unsubscribe_path, class: "btn btn-danger" %></td>
       </tr>
         <% end %>
   </table>
