@@ -1,3 +1,4 @@
+<%= render "admin/homes/header" %>
 <div class="container">
   <div class="row mt-5">
   <h4 style="background-color:#EEEEEE;color:dark;display:inline">会員一覧<thead></h4>
@@ -28,9 +29,10 @@
         <!--trueである場合-->
         <p class="text-secondary">退会</p>
         <% end %>
-        <% end %>
+      <% end %>
       </td>
     </tr>
     </tbody>
     </table>
 </div>
+<%= paginate @customers %>

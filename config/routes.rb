@@ -73,5 +73,8 @@ Rails.application.routes.draw do
   get "/customers/unsubscribe" => "public/customers#unsubscribe", as: "unsubscribe"
   # 論理削除用のルーティング
   patch "/customers/withdrawal" => "public/customers#withdrawal", as: "withdrawal"
+
+
+  get "search" => "searches#search"
 end
 

@@ -1,3 +1,5 @@
+<%= render "public/homes/header" %>
+
 ショッピングカート
 <%= link_to "カートを空にする", destroy_all_cart_items_path, method: :delete,class: "btn btn-danger" %>
 <% @cart_items.each do |cart_item| %>

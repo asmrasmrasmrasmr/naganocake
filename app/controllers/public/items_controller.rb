@@ -2,7 +2,7 @@ class Public::ItemsController < ApplicationController
 
   #3/20 商品の販売ステータスが販売中であれば商品一覧に表示させる
   def index
-    @items = Item.where(is_active: true)
+    @items = Item.where(is_active: true).page(params[:page]).per(8)
   end
 
   def show

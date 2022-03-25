@@ -1,4 +1,6 @@
+<%= render "admin/homes/header" %>
 <div class="container">
+
 <%= form_with model: @customer,url: admin_customer_path(@customer.id),method: :patch do |f| %>
 <div class="row mt-5">
 <h4 style="background-color:#EEEEEE;color:dark;display:inline"><%= @customer.last_name %><%= @customer.first_name %>さんの会員情報編集<thead></h4>
