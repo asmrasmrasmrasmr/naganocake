@@ -6,6 +6,7 @@ Rails.application.routes.draw do
   # end
 
   scope module: :public do
+    resources :genres, only: [:show]
     resources :items, only: [:index, :show]
     resources :addresses, only: [:index, :edit, :create, :update, :destroy]
     resources :cart_items, only: [:index, :create, :update, :destroy] do

@@ -1,0 +1,15 @@
+<table class="text-center border border-dark">
+      <tr>
+        <td>
+         <strong>ジャンル検索</strong>
+        </td>
+      </tr>
+
+      <% genres.each do |genre| %>
+        <tr>
+          <td>
+            <%= link_to genre.name, genre_path(genre.id), class:"ec-genre-list-item"%>
+            </td>
+        </tr>
+           <% end %>
+</table>
