@@ -33,12 +33,10 @@
   <table>
     <tr>
       <th>配送先</th>
-      <td><%= link_to "一覧を見る", class: "btn btn-primary" %></td>
+      <td><%= link_to "一覧を見る", addresses_path, class: "btn btn-primary" %></td>
     </tr>
     <tr>
       <th>注文履歴</th>
-      <td><%= link_to "一覧を見る", class: "btn btn-primary" %></td>
+      <td><%= link_to "一覧を見る", orders_path, class: "btn btn-primary" %></td>
     </tr>
   </table>
-
-<%= link_to "ログアウト", destroy_customer_session_path, method: :delete %>

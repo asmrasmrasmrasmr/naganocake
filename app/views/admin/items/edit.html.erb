@@ -1,5 +1,6 @@
+<%= render "admin/homes/header" %>
 <h2>商品編集</h2>
-<%= form_with model: @item, url: admin_item_path(@item.id), method: :patch do |f| %>
+<%= form_with model: @item, url: admin_item_path(@item.id), method: :patch, local: true do |f| %>
 商品画像 <%= f.file_field :image, accept: "image/*" %>
 商品名 <%= f.text_field :name, placeholder: "商品名" %>
 商品説明 <%= f.text_area :explanation, placeholder: "ここに説明文を記述します" %>

@@ -22,7 +22,7 @@ class Public::CustomersController < ApplicationController
   def update
     @customer = current_customer
     if @customer.update(customer_params)
-      redirect_to request.referer, notice: "successfully"
+      redirect_to customers_path, notice: "successfully"
     else
       render "edit"
     end
