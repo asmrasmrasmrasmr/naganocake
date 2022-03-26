@@ -1,38 +1,44 @@
 <%= render "admin/homes/header" %>
+<div class="container">
+  <div class="row mt-5">
+    <h3 style="background-color:#EEEEEE;color:dark;display:inline">商品一覧</h3>
 
-<h3 style="background-color:#EEEEEE;color:dark;display:inline">商品一覧</h3>
-
-<!--商品一覧から商品新規登録へショートカット-->
-<div class="text-right">
-  <%= link_to image_tag('plus.png', size: "50x50"), new_admin_item_path %>
-  </div>
-<table class="table">
-  <thead class="thead-light">
-    <tr>
-      <th>商品ID</th>
-      <th>商品名</th>
-      <th>税抜価格</th>
-      <th>ジャンル</th>
-      <th></th>
-      <th>ステータス</th>
-    </tr>
-  </thead>
-  <tbody>
-    <% @items.each do |item| %>
-    <tr>
-      <td><%= item.id %></td>
-      <td><%= link_to item.name, admin_item_path(item.id)  %></td>
-      <td><%= item.price %></td>
-      <td><%= item.genre.name %></td>
-      <td></td>
-      <td>
-        <% if item.is_active == true %>
-          販売中
-        <% else %>
-          販売停止中
+    <!--商品一覧から商品新規登録へショートカット-->
+    <div class="col text-right">
+      <span>
+        <%= link_to image_tag('plus.png', size: "50x50"), new_admin_item_path %>
+      </span>
+    </div>
+    <table class="table">
+      <thead class="thead-light">
+        <tr>
+          <th>商品ID</th>
+          <th>商品名</th>
+          <th>税抜価格</th>
+          <th>ジャンル</th>
+          <th></th>
+          <th>ステータス</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @items.each do |item| %>
+        <tr>
+          <td><%= item.id %></td>
+          <td><%= link_to item.name, admin_item_path(item.id)  %></td>
+          <td><%= item.price %></td>
+          <td><%= item.genre.name %></td>
+          <td></td>
+          <td>
+            <% if item.is_active == true %>
+              販売中
+            <% else %>
+              販売停止中
+            <% end %>
+          </td>
         <% end %>
-      </td>
-    <% end %>
-  </tbody>
-</table>
-<%= paginate @items %>
+      </tbody>
+    </table>
+    <%= paginate @items %>
+  </div>
+</div>
+<%= render "layouts/footer" %>
