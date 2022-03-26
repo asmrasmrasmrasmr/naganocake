@@ -18,8 +18,7 @@ class Admin::OrdersController < ApplicationController
     end
     end
     redirect_to request.referer
-  end
-
+    end
   end
   private
   def order_params
