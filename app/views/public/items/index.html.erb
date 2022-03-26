@@ -1,28 +1,35 @@
 <%= render "public/homes/header" %>
 
 <div class ="container">
-  <h3>商品一覧<small>(全</small><small><%= @items.count %></small><small>件)</small></h3>
-  <div class="row">
-    <% @items.each do |item| %>
-    <div class="col-3">
+  <div class="row mt-5">
 
-      <%= link_to(item) do %>
-
-  <!--画像がなければ、「no_image.jpg」で表示-->
-      <% if item.image.attached? %>
-        <%= image_tag item.image, size: "150x100" %>
-      <% else %>
-        <%= image_tag 'no_image.jpg', size: "150x100" %>
-      <% end %>
-      <% end %>
-
-      <div><%= item.name %></div>
-
-      <!--税込価格→　　　　-->
-    <div><%= (item.taxin_price).round %></div>
+    <div class="col-4">
+      <%= render "public/items/sidebar", genres: @genres %>
     </div>
+
+    <div class="col-8 pl-3">
+      <section>
+      <h3>商品一覧<small>(全</small><small><%= @items_all.count %></small><small>件)</small></h3>
+
+        <div class="d-flex flex-wrap font-weight-bold">
+        <% @items.each do |item| %>
+          <div class="mt-5 mr-3">
+        <%= link_to(item) do %>
+          <% if item.image.attached? %>
+            <%= image_tag item.image, size: "150x100" %>
+          <% else %>
+            <%= image_tag 'no_image.jpg', size: "150x100" %>
+          <% end %>
+          <% end %>
+            <div><%= item.name %></div>
+            <p>￥<%= item.taxin_price.round.to_s(:delimited) %></p>
+          </div>
     <% end %>
-  </div>
+        </div>
+      </section>
+    </div>
 </div>
-<%= paginate @items %>
+
+<div class="container"><div class="d-flex justify-content-center"><%= paginate @items %></div></div>
+
 <%= render "layouts/footer" %>
