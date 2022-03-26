@@ -1,23 +1,32 @@
-<div class="row">
-	<div class="col-xs-2">
-		<%= render 'public/items/sidebar', genres: @genres %>
-	</div>
+<%= render "public/homes/header" %>
 
-  <h2 class="font-weight-bold"><%= @genre.name %>一覧<small>(全</small><small><%= @items.count %></small><small>件)</small></h2>
-		<div class="row font-weight-bold">
+<div class ="container">
+  <div class="row mt-5">
+
+    <div class="col-4">
+			<%= render 'public/items/sidebar', genres: @genres %>
+		</div>
+
+  <div class="col-8 pl-3">
+  	<section>
+  	<h3><%= @genre.name %>一覧<small>(全</small><small><%= @items.count %></small><small>件)</small></h3>
+
+		<div class="d-flex flex-wrap font-weight-bold">
 			<% @items.last(4).reverse.each do |item| %>
-				<div class="col-3">
+				<div class="mt-5 mr-3">
 					<%= link_to item_path(item.id) do %>
 						<% if item.image.attached? %>
               <%= image_tag item.image, size: "150x100" %>
             <% else %>
               <%= image_tag 'no_image.jpg', size: "150x100" %>
             <% end %>
-            <% end %>
-						  <div><%= item.name %></div>
-						  <p>￥<%= item.taxin_price.round.to_s(:delimited) %></p>
-					<% end %>
+          <% end %>
+					<div><%= item.name %></div>
+					<p>￥<%= item.taxin_price.round.to_s(:delimited) %></p>
 				</div>
+			<% end %>
 		</div>
+		</section>
 	</div>
+</div>
 	<%= render "layouts/footer" %>
