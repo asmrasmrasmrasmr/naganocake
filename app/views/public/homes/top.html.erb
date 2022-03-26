@@ -17,8 +17,7 @@
       会員でない方も商品の閲覧はできますが、<br>
       購入には会員登録が必要になります。
       <br><br>
-    </div>
-    <br>
+    </div><br>
 
 <!--新着商品-->
   <h3 class="font-weight-bold">新着商品</h3>
@@ -33,16 +32,13 @@
               <% end %>
             <% end %>
             <div><%= item.name %></div>
-          <p>￥<%= item.taxin_price.round.to_s(:delimited) %></p>
+            <p>￥<%= item.taxin_price.round.to_s(:delimited) %></p>
           </div>
-          <% end %>
-          </div>
-
-        <div class="background right">
-        <%= link_to "全ての商品を見る>", items_path %>
-        </div>
-
+        <% end %>
       </div>
-    </div>
+
+      <div class="background right">
+        <%= link_to "全ての商品を見る>", items_path %>
+      </div>
 </div>
 <%= render "layouts/footer" %>

@@ -10,7 +10,9 @@
           <table>
             <% if customer_signed_in? %>
               <tr>
+                <font color="white">
                 ようこそ、<%= current_customer.last_name %>さん!
+                </font>
                 <li>
                   <%= link_to customers_path ,class: 'nav-link text-light' do %>
                 <i class="fas fa-home"></i> マイページ
